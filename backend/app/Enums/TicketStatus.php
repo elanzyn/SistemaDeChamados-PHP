@@ -4,10 +4,12 @@ namespace App\Enums;
 
 class TicketStatus
 {
+    // Status possíveis de um chamado
     const OPEN = 'OPEN';
     const PROGRESS = 'PROGRESS';
     const CLOSED = 'CLOSED';
 
+    // Retorna todos os status disponíveis
     public static function all(): array
     {
         return [
@@ -17,6 +19,7 @@ class TicketStatus
         ];
     }
 
+    // Retorna os rótulos em português para cada status
     public static function labels(): array
     {
         return [

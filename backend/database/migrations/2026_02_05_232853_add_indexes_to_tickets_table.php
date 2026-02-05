@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    // Adiciona índices para melhorar performance de consultas
     public function up(): void
     {
         Schema::table('tickets', function (Blueprint $table) {
@@ -15,6 +16,7 @@ return new class extends Migration
         });
     }
 
+    // Remove os índices criados
     public function down(): void
     {
         Schema::table('tickets', function (Blueprint $table) {

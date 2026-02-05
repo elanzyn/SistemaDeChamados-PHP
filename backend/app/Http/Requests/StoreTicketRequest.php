@@ -6,14 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTicketRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+    // Autoriza todos os usuários autenticados a criar chamados
     public function authorize(): bool
     {
         return true;
     }
 
+    // Define as regras de validação para criação de chamado
     public function rules(): array
     {
         return [
@@ -24,6 +23,7 @@ class StoreTicketRequest extends FormRequest
         ];
     }
 
+    // Define mensagens de erro personalizadas em português
     public function messages(): array
     {
         return [
