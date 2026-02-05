@@ -7,6 +7,3 @@ Route::get('/', [TicketController::class, 'index'])->name('dashboard');
 
 // Define rotas RESTful para gerenciamento de chamados
 Route::resource('tickets', TicketController::class);
-
-// Define rota específica para exclusão de chamado
-Route::delete('/tickets/{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');

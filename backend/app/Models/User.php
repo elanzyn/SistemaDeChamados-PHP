@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -44,5 +45,23 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Usuário pode criar múltiplos chamados
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class, 'user_id');
+    }
+
+    // Usuário técnico pode ser responsável por múltiplos chamados
+    public function assignedTickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class, 'tech_id');
+    }
+
+    // Usuário pode fazer múltiplos comentários
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }

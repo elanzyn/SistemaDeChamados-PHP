@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Ticket;
+use App\Enums\UserRole;
+use App\Enums\TicketStatus;
+use App\Enums\TicketPriority;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Administrador do Sistema',
             'email' => 'admin@sistema.com.br',
             'password' => Hash::make('password'),
-            'role' => 'ADMIN',
+            'role' => UserRole::ADMIN,
             'department' => 'TI Central',
         ]);
 
@@ -25,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Técnico Suporte',
             'email' => 'tecnico@sistema.com.br',
             'password' => Hash::make('password'),
-            'role' => 'TECH',
+            'role' => UserRole::TECH,
             'department' => 'Suporte Nível 1',
         ]);
 
@@ -33,7 +36,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'João Silva',
             'email' => 'joao@cliente.com.br',
             'password' => Hash::make('password'),
-            'role' => 'USER',
+            'role' => UserRole::USER,
             'department' => 'Financeiro',
         ]);
 
@@ -46,8 +49,8 @@ class DatabaseSeeder extends Seeder
         Ticket::create([
             'title' => 'Impressora não imprime no Financeiro',
             'description' => 'A impressora HP do setor parou de responder após queda de energia.',
-            'priority' => 'MEDIUM',
-            'status' => 'OPEN',
+            'priority' => TicketPriority::MEDIUM,
+            'status' => TicketStatus::OPEN,
             'user_id' => $usuario->id,
             'category_id' => $catHardware->id,
         ]);
@@ -55,8 +58,8 @@ class DatabaseSeeder extends Seeder
         Ticket::create([
             'title' => 'Erro ao acessar o ERP - Módulo Contábil',
             'description' => 'Aparece mensagem de erro 500 ao tentar gerar relatórios mensais.',
-            'priority' => 'HIGH',
-            'status' => 'PROGRESS',
+            'priority' => TicketPriority::HIGH,
+            'status' => TicketStatus::PROGRESS,
             'user_id' => $usuario->id,
             'tech_id' => $tecnico->id,
             'category_id' => $catSoftware->id,
@@ -65,8 +68,8 @@ class DatabaseSeeder extends Seeder
         Ticket::create([
             'title' => 'Cabo de rede danificado na recepção',
             'description' => 'O cabo de rede parece estar com o conector quebrado.',
-            'priority' => 'LOW',
-            'status' => 'OPEN',
+            'priority' => TicketPriority::LOW,
+            'status' => TicketStatus::OPEN,
             'user_id' => $usuario->id,
             'category_id' => $catRede->id,
         ]);
