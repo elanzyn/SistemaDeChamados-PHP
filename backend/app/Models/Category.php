@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
-    // Campos que podem ser preenchidos em massa
     protected $fillable = ['name', 'description'];
 
-    // Relacionamento: Uma categoria possui muitos chamados
+    // Uma categoria pode ter múltiplos chamados associados
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class);

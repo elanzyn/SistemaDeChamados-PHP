@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 class TicketController extends Controller
 {
-    // Método que você já tem para carregar a tela
+    // Exibe a listagem de todos os chamados com suas respectivas categorias
     public function index() 
     {
         $tickets = Ticket::with('category', 'user')->latest()->get();
@@ -22,16 +22,16 @@ class TicketController extends Controller
     }
     public function store(Request $request)
 {
-    // 1. Forçamos a conversão para maiúsculo para bater com a Migration
+    // Normaliza a prioridade para maiúsculo conforme definido na migration
     $priority = strtoupper($request->priority); 
 
-    // 2. Criamos o ticket tratando os dados
+    // Cria o chamado com os dados fornecidos
     \App\Models\Ticket::create([
         'title'       => $request->title,
         'description' => $request->description,
-        'priority'    => $priority, // Aqui vai 'HIGH', 'MEDIUM', etc.
+        'priority'    => $priority,
         'category_id' => $request->category_id,
-        'user_id'     => auth()->id() ?? 3, // Usa o ID logado ou o 3 de teste
+        'user_id'     => auth()->id() ?? 3,
         'status'      => 'OPEN',
     ]);
 
@@ -42,6 +42,6 @@ class TicketController extends Controller
 public function destroy(\App\Models\Ticket $ticket)
 {
     $ticket->delete();
-    return redirect()->back(); // Recarrega a página com a lista atualizada
+    return redirect()->back();
 }
 }

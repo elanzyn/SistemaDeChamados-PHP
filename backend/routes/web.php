@@ -2,10 +2,11 @@
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
-// Rota principal
+// Exibe o dashboard principal com a listagem de chamados
 Route::get('/', [TicketController::class, 'index'])->name('dashboard');
 
-// Rota para salvar (POST) e demais recursos
+// Define rotas RESTful para gerenciamento de chamados
 Route::resource('tickets', TicketController::class);
 
-Route::delete('/tickets/{ticket}', [App\Http\Controllers\TicketController.class, 'destroy'])->name('tickets.destroy');
+// Define rota específica para exclusão de chamado
+Route::delete('/tickets/{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');

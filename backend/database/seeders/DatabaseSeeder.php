@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Criar Usuários de Teste
+        // Cria usuários de teste para o sistema
         $admin = User::create([
             'name' => 'Administrador do Sistema',
             'email' => 'admin@sistema.com.br',
@@ -37,12 +37,12 @@ class DatabaseSeeder extends Seeder
             'department' => 'Financeiro',
         ]);
 
-        // 2. Criar Categorias em Português
+        // Cria categorias para classificação dos chamados
         $catHardware = Category::create(['name' => 'Hardware', 'description' => 'Problemas com máquinas e periféricos']);
         $catSoftware = Category::create(['name' => 'Software/Sistemas', 'description' => 'Erros em programas ou acesso ao ERP']);
         $catRede = Category::create(['name' => 'Redes e Internet', 'description' => 'Problemas de conexão e Wi-Fi']);
 
-        // 3. Criar Chamados de Exemplo
+        // Cria chamados de exemplo para demonstração do sistema
         Ticket::create([
             'title' => 'Impressora não imprime no Financeiro',
             'description' => 'A impressora HP do setor parou de responder após queda de energia.',
