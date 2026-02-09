@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,6 +26,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('tickets', TicketController::class);
     Route::patch('/tickets/{ticket}/assign', [TicketController::class, 'assignTechnician'])->name('tickets.assign');
     Route::patch('/tickets/{ticket}/status', [TicketController::class, 'updateStatus'])->name('tickets.status');
+    
+    // Rotas de comentários
+    Route::post('/tickets/{ticket}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     
     // Rotas de gerenciamento de categorias
     Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);

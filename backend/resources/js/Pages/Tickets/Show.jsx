@@ -1,9 +1,11 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import StatusBadge from '@/Components/StatusBadge';
 import PriorityBadge from '@/Components/PriorityBadge';
+import CommentSection from '@/Components/CommentSection';
 
 export default function Show({ ticket }) {
+    const { auth } = usePage().props;
     const { delete: destroy, processing } = useForm();
 
     const handleDelete = () => {
@@ -116,17 +118,10 @@ export default function Show({ ticket }) {
                         </div>
                     </div>
 
-                    {/* Comentários (placeholder para futuro) */}
+                    {/* Comentários */}
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6">
-                            <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                                Comentários
-                            </h4>
-                            <div className="text-center py-8">
-                                <p className="text-gray-500 dark:text-gray-400">
-                                    Sistema de comentários será implementado em breve.
-                                </p>
-                            </div>
+                            <CommentSection ticket={ticket} auth={auth} />
                         </div>
                     </div>
 
