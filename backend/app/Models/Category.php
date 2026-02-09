@@ -9,7 +9,7 @@ class Category extends Model
 {
     protected $fillable = ['name', 'description'];
 
-    // Uma categoria pode ter múltiplos chamados associados
+    // Retorna os chamados da categoria
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class);

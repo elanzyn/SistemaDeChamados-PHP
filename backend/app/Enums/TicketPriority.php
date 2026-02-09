@@ -4,13 +4,13 @@ namespace App\Enums;
 
 class TicketPriority
 {
-    // Níveis de prioridade de um chamado
+    // Níveis de prioridade do chamado
     const LOW = 'LOW';
     const MEDIUM = 'MEDIUM';
     const HIGH = 'HIGH';
     const CRITICAL = 'CRITICAL';
 
-    // Retorna todas as prioridades disponíveis
+    // Lista todas as prioridades
     public static function all(): array
     {
         return [
@@ -21,7 +21,7 @@ class TicketPriority
         ];
     }
 
-    // Retorna os rótulos em português para cada prioridade
+    // Nomes das prioridades em português
     public static function labels(): array
     {
         return [

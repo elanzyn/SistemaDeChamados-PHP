@@ -22,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'department',
+        'active',
     ];
 
     /**
@@ -47,19 +50,19 @@ class User extends Authenticatable
         ];
     }
 
-    // Usuário pode criar múltiplos chamados
+    // Retorna os chamados criados pelo usuário
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class, 'user_id');
     }
 
-    // Usuário técnico pode ser responsável por múltiplos chamados
+    // Retorna os chamados atribuídos ao técnico
     public function assignedTickets(): HasMany
     {
         return $this->hasMany(Ticket::class, 'tech_id');
     }
 
-    // Usuário pode fazer múltiplos comentários
+    // Retorna os comentários feitos pelo usuário
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);

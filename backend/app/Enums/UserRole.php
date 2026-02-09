@@ -4,12 +4,12 @@ namespace App\Enums;
 
 class UserRole
 {
-    // Papéis de usuário no sistema
+    // Tipos de usuário no sistema
     const ADMIN = 'ADMIN';
     const TECH = 'TECH';
     const USER = 'USER';
 
-    // Retorna todos os papéis disponíveis
+    // Lista todos os tipos
     public static function all(): array
     {
         return [
@@ -19,7 +19,7 @@ class UserRole
         ];
     }
 
-    // Retorna os rótulos em português para cada papel
+    // Nomes dos tipos em português
     public static function labels(): array
     {
         return [

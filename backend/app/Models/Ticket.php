@@ -18,25 +18,25 @@ class Ticket extends Model
         'category_id'
     ];
 
-    // Chamado pertence ao usuário que o criou
+    // Retorna o usuário que criou o chamado
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Chamado pode ser atribuído a um técnico responsável
+    // Retorna o técnico responsável pelo chamado
     public function technician(): BelongsTo
     {
         return $this->belongsTo(User::class, 'tech_id');
     }
 
-    // Chamado pertence a uma categoria específica
+    // Retorna a categoria do chamado
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    // Chamado pode ter múltiplos comentários associados
+    // Retorna os comentários do chamado
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
