@@ -3,6 +3,9 @@ import { Head, Link } from '@inertiajs/react';
 import StatCard from '@/Components/StatCard';
 import StatusBadge from '@/Components/StatusBadge';
 import PriorityBadge from '@/Components/PriorityBadge';
+import StatusPieChart from '@/Components/StatusPieChart';
+import PriorityBarChart from '@/Components/PriorityBarChart';
+import CategoryBarChart from '@/Components/CategoryBarChart';
 
 export default function Dashboard({ tickets, categories, metrics, userRole }) {
     return (
@@ -60,7 +63,7 @@ export default function Dashboard({ tickets, categories, metrics, userRole }) {
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                                 Chamados por Prioridade
                             </h3>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                                 <div className="text-center">
                                     <p className="text-3xl font-bold text-gray-700 dark:text-gray-300">
                                         {metrics.by_priority.low}
@@ -86,31 +89,33 @@ export default function Dashboard({ tickets, categories, metrics, userRole }) {
                                     <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Crítica</p>
                                 </div>
                             </div>
+                            <PriorityBarChart metrics={metrics} />
                         </div>
                     </div>
 
-                    {/* Chamados por Categoria */}
-                    {metrics.by_category && metrics.by_category.length > 0 && (
+                    {/* Gráficos em Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {/* Gráfico de Status */}
                         <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="p-6">
                                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                                    Chamados por Categoria
+                                    Distribuição por Status
                                 </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    {metrics.by_category.map((category, index) => (
-                                        <div key={index} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                                            <span className="text-sm font-medium text-gray-900 dark:text-white">
-                                                {category.name}
-                                            </span>
-                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">
-                                                {category.count}
-                                            </span>
-                                        </div>
-                                    ))}
-                                </div>
+                                <StatusPieChart metrics={metrics} />
                             </div>
                         </div>
-                    )}
+
+                        {/* Gráfico de Categorias */}
+                        <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                            <div className="p-6">
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                                    Top 5 Categorias
+                                </h3>
+                                <CategoryBarChart categories={metrics.by_category} />
+                            </div>
+                        </div>
+                    </div>
+
 
                     {/* Tabela de Chamados Recentes */}
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
