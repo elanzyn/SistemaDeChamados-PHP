@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,6 +35,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     // Rotas de gerenciamento de categorias
     Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);
+    
+    // Rotas de gerenciamento de usuários
+    Route::resource('users', UserController::class)->except(['create', 'show', 'edit']);
+    Route::put('/users/{user}/password', [UserController::class, 'updatePassword'])->name('users.password');
+    Route::post('/users/{user}/toggle', [UserController::class, 'toggleActive'])->name('users.toggle');
     
     // Perfil do usuário
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

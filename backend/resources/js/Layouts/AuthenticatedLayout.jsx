@@ -32,12 +32,20 @@ export default function AuthenticatedLayout({ header, children }) {
                                 </NavLink>
                                 
                                 {user.role === 'ADMIN' && (
-                                    <NavLink
-                                        href={route('categories.index')}
-                                        active={route().current('categories.*')}
-                                    >
-                                        Categorias
-                                    </NavLink>
+                                    <>
+                                        <NavLink
+                                            href={route('categories.index')}
+                                            active={route().current('categories.*')}
+                                        >
+                                            Categorias
+                                        </NavLink>
+                                        <NavLink
+                                            href={route('users.index')}
+                                            active={route().current('users.*')}
+                                        >
+                                            Usuários
+                                        </NavLink>
+                                    </>
                                 )}
                             </div>
                         </div>
@@ -145,12 +153,20 @@ export default function AuthenticatedLayout({ header, children }) {
                         </ResponsiveNavLink>
                         
                         {user.role === 'ADMIN' && (
-                            <ResponsiveNavLink
-                                href={route('categories.index')}
-                                active={route().current('categories.*')}
-                            >
-                                Categorias
-                            </ResponsiveNavLink>
+                            <>
+                                <ResponsiveNavLink
+                                    href={route('categories.index')}
+                                    active={route().current('categories.*')}
+                                >
+                                    Categorias
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink
+                                    href={route('users.index')}
+                                    active={route().current('users.*')}
+                                >
+                                    Usuários
+                                </ResponsiveNavLink>
+                            </>
                         )}
                     </div>
 
