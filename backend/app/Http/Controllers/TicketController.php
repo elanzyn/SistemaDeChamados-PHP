@@ -61,6 +61,16 @@ class TicketController extends Controller
         ]);
     }
 
+    // Mostra o formulário para criar novo chamado
+    public function create()
+    {
+        $categories = Category::all();
+        
+        return Inertia::render('Tickets/Create', [
+            'categories' => $categories
+        ]);
+    }
+
     // Mostra os detalhes de um chamado específico
     public function show(Ticket $ticket)
     {
@@ -99,7 +109,7 @@ class TicketController extends Controller
     {
         $this->authorize('update', $ticket);
         
-        $ticket->load(['category', 'user']);
+        $ticket->load(['category', 'user', 'technician']);
         $categories = Category::all();
         
         return Inertia::render('Tickets/Edit', [
