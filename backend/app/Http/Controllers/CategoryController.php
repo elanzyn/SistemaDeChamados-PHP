@@ -11,7 +11,9 @@ class CategoryController extends Controller
     // Lista todas as categorias
     public function index()
     {
-        $categories = Category::withCount('tickets')->latest()->paginate(15);
+        $categories = Category::withCount('tickets')
+            ->orderBy('name')
+            ->get();
         
         return Inertia::render('Categories/Index', [
             'categories' => $categories

@@ -30,6 +30,15 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
+                                
+                                {user.role === 'ADMIN' && (
+                                    <NavLink
+                                        href={route('categories.index')}
+                                        active={route().current('categories.*')}
+                                    >
+                                        Categorias
+                                    </NavLink>
+                                )}
                             </div>
                         </div>
 
@@ -134,6 +143,15 @@ export default function AuthenticatedLayout({ header, children }) {
                         >
                             Dashboard
                         </ResponsiveNavLink>
+                        
+                        {user.role === 'ADMIN' && (
+                            <ResponsiveNavLink
+                                href={route('categories.index')}
+                                active={route().current('categories.*')}
+                            >
+                                Categorias
+                            </ResponsiveNavLink>
+                        )}
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
