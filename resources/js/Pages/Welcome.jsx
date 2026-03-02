@@ -1,0 +1,54 @@
+import { Head, Link } from '@inertiajs/react';
+   import ApplicationLogo from '../Components/ApplicationLogo';
+
+   export default function Welcome({ auth }) {
+       return (
+           <>
+               <Head title="Bem-vindo ao Sistema de Chamados" />
+               <div className="bg-gradient-to-br from-blue-900 via-black to-gray-900 min-h-screen text-white">
+                   <div className="flex min-h-screen flex-col items-center justify-center selection:bg-blue-900
+  selection:text-white">
+                       <div className="w-full max-w-2xl px-6">
+                           <header className="flex flex-col items-center py-10">
+                               <ApplicationLogo className="h-20 w-20 mb-6" />
+                               <nav className="flex gap-4 mt-4">
+                                   {auth.user ? (
+                                       <Link
+                                           href={route('dashboard')}
+                                           className="rounded-md px-4 py-2 bg-blue-800 text-white font-bold shadow
+  hover:bg-blue-900 transition"
+                                       >
+                                           Dashboard
+                                       </Link>
+                                   ) : (
+                                       <>
+                                           <Link
+                                               href={route('login')}
+                                               className="rounded-md px-4 py-2 bg-blue-800 text-white font-bold shadow
+   hover:bg-blue-900 transition"
+                                           >
+                                               Entrar
+                                           </Link>
+                                           <Link
+                                               href={route('register')}
+                                               className="rounded-md px-4 py-2 bg-black text-white font-bold shadow
+  hover:bg-gray-900 transition"
+                                           >
+                                               Registrar-se
+                                           </Link>
+                                       </>
+                                   )}
+                               </nav>
+                           </header>
+                           <main className="mt-6 flex flex-col items-center justify-center">
+                               <h1 className="text-4xl font-bold mb-6 text-white drop-shadow">Bem-vindo ao Sistema de
+  Chamados</h1>
+                               <p className="mb-8 text-lg text-gray-300">Gerencie seus chamados de forma rápida e
+  eficiente.</p>
+                           </main>
+                       </div>
+                   </div>
+               </div>
+           </>
+       );
+   }
