@@ -1,23 +1,24 @@
 # Sistema de Chamados - Como Rodar
 
+## Pré-requisitos
+
+- PHP 8.2+
+- Composer 2+
+- Node.js 18+
+- NPM
+
 ## Instalação rápida
 
-1. Clone o projeto:
-   ```bash
-   git clone <URL-do-repositório>
-   cd backend
-   ```
+1. Entre na pasta `backend`.
 
-2. Instale dependências:
+2. Instale as dependências do Laravel:
    ```bash
    composer install
-   npm install
    ```
 
-3. Copie o arquivo de ambiente:
-   ```bash
-   cp .env.example .env
-   # Se não existir, copie o .env do projeto
+3. Crie o arquivo de ambiente:
+   ```powershell
+   if (!(Test-Path .env)) { Copy-Item .env.example .env }
    ```
 
 4. Gere a chave da aplicação:
@@ -25,34 +26,64 @@
    php artisan key:generate
    ```
 
-5. Rode as migrations e seeders:
+5. Execute as migrations:
    ```bash
-   php artisan migrate --seed
+   php artisan migrate
    ```
 
-6. Inicie o backend:
+6. Instale as dependências do frontend:
    ```bash
-   php artisan serve
+   npm install
    ```
 
-7. Inicie o frontend:
-   ```bash
-   npm run dev
-   ```
+## Rodando o projeto
 
-## Usando com XAMPP
+Em um terminal (backend Laravel):
 
-- O projeto usa SQLite por padrão, compatível com PHP do XAMPP.
-- Não é necessário configurar MySQL ou phpMyAdmin.
-- Basta seguir os passos de instalação acima normalmente.
+```bash
+php artisan serve
+```
 
-Pronto! Acesse pelo navegador: `http://localhost:8000`
+Em outro terminal (Vite/frontend):
 
-## Como criar um usuário administrador
+```bash
+npm run dev
+```
 
-- Após instalar, você pode criar um admin pelo Tinker:
-  ```bash
-  php artisan tinker
-  >>> \App\Models\User::create(['name' => 'Administrador', 'email' => 'admin@admin.com', 'password' => bcrypt('senha_segura'), 'role' => 'ADMIN']);
-  ```
-- Depois, faça login com esse usuário para cadastrar novos usuários pelo sistema.
+Acesse: `http://127.0.0.1:8000`
+
+## Criar usuário administrador
+
+```bash
+php artisan tinker --execute="App\\Models\\User::updateOrCreate(['email' => 'admin@admin.com'], ['name' => 'Administrador', 'password' => 'admin123', 'role' => 'ADMIN', 'department' => 'TI', 'active' => true]);"
+```
+
+Credenciais padrão:
+
+- Email: `admin@admin.com`
+- Senha: `admin123`
+
+## Tecnologias utilizadas
+
+### Backend
+
+- PHP 8.2
+- Laravel 12
+- Laravel Sanctum
+- Laravel Breeze
+- Inertia.js (Laravel adapter)
+- SQLite (padrão do projeto)
+
+### Frontend
+
+- React 19
+- Inertia.js React
+- Vite 7
+- Tailwind CSS
+- Axios
+- Recharts
+
+### Qualidade e testes
+
+- PHPUnit 11
+- Laravel Pint
